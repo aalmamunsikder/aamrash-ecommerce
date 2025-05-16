@@ -111,23 +111,23 @@ const FeaturedProducts = () => {
   };
   
   return (
-    <section className="py-16 md:py-24">
+    <section className="py-10 md:py-16 lg:py-24">
       <div className="container mx-auto px-4">
         {/* Section heading */}
-        <div className="max-w-3xl mx-auto text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+        <div className="max-w-3xl mx-auto text-center mb-8 md:mb-12">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 md:mb-4">
             আমাদের <span className="text-mango-600">ফিচার্ড আম</span>
           </h2>
-          <p className="text-gray-600 md:text-lg">
+          <p className="text-gray-600 text-sm md:text-base lg:text-lg">
             বাংলাদেশের বিভিন্ন অঞ্চল থেকে সংগৃহীত সেরা মানের আম
           </p>
         </div>
         
         {/* Product tabs */}
-        <div className="flex justify-center mb-12">
+        <div className="flex justify-center mb-8 md:mb-12">
           <div className="inline-flex bg-gray-100 rounded-full p-1">
             <button 
-              className={`px-6 py-2 rounded-full text-sm font-medium transition-colors ${
+              className={`px-4 sm:px-6 py-2 rounded-full text-xs sm:text-sm font-medium transition-colors ${
                 activeTab === 'popular' 
                   ? 'bg-mango-500 text-white shadow-md' 
                   : 'text-gray-600 hover:text-mango-600'
@@ -138,7 +138,7 @@ const FeaturedProducts = () => {
             </button>
             
             <button 
-              className={`px-6 py-2 rounded-full text-sm font-medium transition-colors ${
+              className={`px-4 sm:px-6 py-2 rounded-full text-xs sm:text-sm font-medium transition-colors ${
                 activeTab === 'seasonal' 
                   ? 'bg-mango-500 text-white shadow-md' 
                   : 'text-gray-600 hover:text-mango-600'
@@ -150,18 +150,18 @@ const FeaturedProducts = () => {
           </div>
         </div>
         
-        {/* Products grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        {/* Products grid - adjusted for better mobile experience */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
           {products[activeTab as keyof typeof products].map((product) => (
             <div 
               key={product.id} 
-              className="bg-white rounded-2xl overflow-hidden shadow-mango hover:shadow-mango-lg transition-shadow group"
+              className="bg-white rounded-lg md:rounded-2xl overflow-hidden shadow-mango hover:shadow-mango-lg transition-shadow group"
             >
               <div className="relative overflow-hidden">
                 <img 
                   src={product.image} 
                   alt={product.name} 
-                  className="w-full h-64 object-cover transform group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-48 sm:h-56 md:h-64 object-cover transform group-hover:scale-105 transition-transform duration-500"
                   onError={(e) => {
                     // Fallback to a default mango image if loading fails
                     e.currentTarget.src = fallbackImage;
@@ -169,20 +169,20 @@ const FeaturedProducts = () => {
                 />
                 
                 {product.discount && (
-                  <div className="absolute top-3 left-3 bg-mango-500 text-white text-xs font-bold rounded-full px-2 py-1">
+                  <div className="absolute top-2 left-2 md:top-3 md:left-3 bg-mango-500 text-white text-xs font-bold rounded-full px-2 py-1">
                     {product.discount}
                   </div>
                 )}
                 
                 {!product.available && (
                   <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
-                    <div className="bg-white/90 px-4 py-2 rounded-lg font-medium text-gray-800">
+                    <div className="bg-white/90 px-3 md:px-4 py-1 md:py-2 rounded-lg font-medium text-sm md:text-base text-gray-800">
                       স্টক শেষ
                     </div>
                   </div>
                 )}
                 
-                <div className="absolute top-3 right-3 bg-white/90 rounded-full p-1 shadow-sm flex items-center px-2">
+                <div className="absolute top-2 right-2 md:top-3 md:right-3 bg-white/90 rounded-full p-1 shadow-sm flex items-center px-2">
                   <Star className="w-3 h-3 text-mango-400 fill-mango-400" />
                   <span className="text-xs font-medium ml-1">
                     {product.rating}
@@ -190,35 +190,36 @@ const FeaturedProducts = () => {
                 </div>
               </div>
               
-              <div className="p-5">
-                <div className="flex justify-between items-start mb-2">
-                  <h3 className="text-lg font-bold text-gray-800 group-hover:text-mango-600 transition-colors">
+              <div className="p-3 sm:p-4 md:p-5">
+                <div className="flex justify-between items-start mb-1 md:mb-2">
+                  <h3 className="text-base md:text-lg font-bold text-gray-800 group-hover:text-mango-600 transition-colors">
                     {product.name}
                   </h3>
-                  <span className="text-sm bg-leaf-50 text-leaf-700 px-2 py-1 rounded">
+                  <span className="text-xs md:text-sm bg-leaf-50 text-leaf-700 px-1.5 md:px-2 py-0.5 md:py-1 rounded">
                     {product.weight}
                   </span>
                 </div>
                 
-                <p className="text-gray-600 text-sm mb-4 line-clamp-2">{product.description}</p>
+                <p className="text-gray-600 text-xs md:text-sm mb-3 md:mb-4 line-clamp-2">{product.description}</p>
                 
                 <div className="flex justify-between items-center">
                   <div>
-                    <span className="text-mango-600 font-bold text-lg">{product.price}</span>
+                    <span className="text-mango-600 font-bold text-base md:text-lg">{product.price}</span>
                     {product.oldPrice && (
-                      <span className="text-gray-400 line-through text-sm ml-2">{product.oldPrice}</span>
+                      <span className="text-gray-400 line-through text-xs md:text-sm ml-1 md:ml-2">{product.oldPrice}</span>
                     )}
                   </div>
                   
                   <button 
-                    className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors ${
+                    className={`w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center transition-colors ${
                       product.available 
                         ? 'bg-mango-100 hover:bg-mango-200 text-mango-600' 
                         : 'bg-gray-100 text-gray-400 cursor-not-allowed'
                     }`}
                     disabled={!product.available}
+                    aria-label={product.available ? `Add ${product.name} to cart` : `${product.name} out of stock`}
                   >
-                    <ShoppingCart className="w-5 h-5" />
+                    <ShoppingCart className="w-4 h-4 md:w-5 md:h-5" />
                   </button>
                 </div>
               </div>
@@ -227,13 +228,13 @@ const FeaturedProducts = () => {
         </div>
         
         {/* View all button */}
-        <div className="mt-12 text-center">
+        <div className="mt-8 md:mt-12 text-center">
           <a 
             href="#" 
-            className="inline-flex items-center px-6 py-3 border-2 border-mango-500 text-mango-600 hover:bg-mango-50 font-medium rounded-full transition-colors"
+            className="inline-flex items-center px-5 py-2.5 md:px-6 md:py-3 border-2 border-mango-500 text-mango-600 hover:bg-mango-50 font-medium rounded-full transition-colors text-sm md:text-base"
           >
             সকল আম দেখুন
-            <ArrowRight className="ml-2 w-4 h-4" />
+            <ArrowRight className="ml-1.5 md:ml-2 w-3.5 h-3.5 md:w-4 md:h-4" />
           </a>
         </div>
       </div>
