@@ -11,12 +11,12 @@ import Footer from './components/Footer';
 
 function App() {
   return (
-    <div className="min-h-screen bg-mango-50 font-sans">
+    <div className="min-h-screen bg-mango-50 font-sans overflow-hidden">
       <div className="fixed inset-0 z-0 bg-mango-pattern opacity-5 pointer-events-none"></div>
       
       <Navbar />
       
-      <main>
+      <main className="overflow-hidden">
         <Hero />
         
         <div className="relative py-0 md:py-4">
